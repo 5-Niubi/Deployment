@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  algorithmservice:
+    image: pham2604/5niubi_algo_service:0.0.1
+    networks:
+      - internal-network
+
+  jiraschedulingconnectappservice:
+    image: pham2604/5niubi_backend:0.0.1
+  
+    ports:
+      - "5126:80"
+    environment:
+      ALGORITHM_SERVICE_URL: http://algorithmservice
+
+    networks:
+      - internal-network
+
+networks:
+  internal-network:
+    driver: bridge
